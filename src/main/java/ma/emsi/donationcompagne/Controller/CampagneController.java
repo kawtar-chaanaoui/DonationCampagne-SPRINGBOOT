@@ -1,9 +1,7 @@
-package ma.emsi.donationcompagne.controller;
+package ma.emsi.donationcompagne.Controller;
 
 import ma.emsi.donationcompagne.projection.CampagneResume;
 import ma.emsi.donationcompagne.service.ServiceCampagne;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/campagnes")
-@Tag(name = "Campagnes", description = "API pour gérer les campagnes")
 public class CampagneController {
 
     private final ServiceCampagne serviceCampagne;
@@ -25,8 +22,6 @@ public class CampagneController {
     }
 
     @GetMapping("/actives")
-    @Operation(summary = "Récupérer les campagnes actives",
-            description = "Retourne la liste des campagnes actuellement actives (date actuelle comprise entre dateDebut et dateFin)")
     public ResponseEntity<List<CampagneResume>> getCampagnesActives() {
         List<CampagneResume> campagnesActives = serviceCampagne.getCampagnesActives();
         return ResponseEntity.ok(campagnesActives);
